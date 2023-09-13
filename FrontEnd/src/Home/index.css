@@ -1,0 +1,119 @@
+.home-container {
+  background-color: black;
+  min-height: 90.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-card-container {
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  min-width: 82vw;
+  border-radius: 30px;
+}
+.home-button-container {
+  background-color: beige;
+  min-height: 30vh;
+  min-width: 50vw;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.home-button {
+  background-color: transparent;
+  border: 0px;
+  outline: none;
+  font-size: 16px;
+  font-family: "Roboto";
+  cursor: pointer;
+  font-weight: 900;
+}
+.home-button-hover:hover {
+  text-decoration: underline;
+}
+.home-pop-up-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 68vw;
+  min-height: 36vh;
+  background-color: rgb(230, 133, 133);
+  border-radius: 10px;
+}
+.pop-up-close-button {
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  margin-top: 15px;
+  margin-right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.pop-up-container {
+  max-width: 60vw;
+}
+.pop-up-title {
+  font-size: 18px;
+  font-family: "Roboto";
+}
+.pop-up-description {
+  font-size: 14px;
+  font-family: "Roboto";
+}
+.pop-up-start-button {
+  background-color: blueviolet;
+  border: 2px solid rgb(26, 19, 32);
+  padding: 6px;
+  border-radius: 3px;
+  font-size: 16px;
+  font-family: "Roboto";
+  color: #090909;
+  font-weight: 900;
+  cursor: pointer;
+  margin-bottom: 100px;
+}
+@media screen and (min-width: 992px) {
+  .home-container {
+    min-height: 88.3vh;
+  }
+  .home-card-container {
+    min-height: 80vh;
+    min-width: 84vw;
+    border-radius: 30px;
+  }
+  .home-button-container {
+    background-color: beige;
+    min-height: 38vh;
+    min-width: 60vw;
+    border-radius: 10px;
+    margin: 14px;
+  }
+  .home-button {
+    font-size: 24px;
+  }
+  .pop-up-title {
+    font-size: 26px;
+  }
+  .pop-up-description {
+    font-size: 22px;
+  }
+
+  .pop-up-close-button {
+    margin-top: 24px;
+    margin-right: 24px;
+    font-size: 28px;
+  }
+  .pop-up-start-button {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-bottom: 140px;
+  }
+}
