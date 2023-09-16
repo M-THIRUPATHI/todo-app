@@ -1,119 +1,109 @@
-.home-container {
-  background-color: black;
-  min-height: 90.5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.todos-bg-container {
+  min-height: 85.5vh;
+  padding-left: 10px;
 }
-.home-card-container {
-  background-color: aqua;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  min-width: 82vw;
-  border-radius: 30px;
-}
-.home-button-container {
-  background-color: beige;
-  min-height: 30vh;
-  min-width: 50vw;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-}
-.home-button {
-  background-color: transparent;
-  border: 0px;
-  outline: none;
-  font-size: 16px;
+.todos-heading {
+  text-align: center;
   font-family: "Roboto";
-  cursor: pointer;
-  font-weight: 900;
-}
-.home-button-hover:hover {
-  text-decoration: underline;
-}
-.home-pop-up-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 68vw;
-  min-height: 36vh;
-  background-color: rgb(230, 133, 133);
-  border-radius: 10px;
-}
-.pop-up-close-button {
-  align-self: flex-end;
-  background-color: transparent;
-  border: none;
-  margin-top: 15px;
-  margin-right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
-.pop-up-container {
-  max-width: 60vw;
-}
-.pop-up-title {
   font-size: 18px;
-  font-family: "Roboto";
+  font-weight: 800;
 }
-.pop-up-description {
-  font-size: 14px;
+
+.create-task-heading {
   font-family: "Roboto";
-}
-.pop-up-start-button {
-  background-color: blueviolet;
-  border: 2px solid rgb(26, 19, 32);
-  padding: 6px;
-  border-radius: 3px;
   font-size: 16px;
+  font-weight: 700;
+}
+
+.create-task-heading-subpart {
   font-family: "Roboto";
-  color: #090909;
-  font-weight: 900;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.todo-user-input {
+  background-color: white;
+  width: 50%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #080808;
+  border-radius: 10px;
+  padding: 6px;
+}
+.add-button {
+  color: white;
+  background-color: #4c63b6;
+  font-family: "Roboto";
+  font-size: 15px;
+  border-width: 0px;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
   cursor: pointer;
-  margin-bottom: 100px;
+  margin-left: 10px;
+}
+.todo-items-heading {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 700;
+}
+.todo-items-heading-subpart {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.text-decoration-on {
+  text-decoration: line-through;
+  font-family: "Roboto";
+  font-size: 15px;
+  margin-right: 6px;
+}
+.text-decoration-off {
+  font-family: "Roboto";
+  font-size: 15px;
+  margin-right: 6px;
+}
+.todo-items {
+  list-style-type: decimal;
+  margin-top: 0px;
 }
 @media screen and (min-width: 992px) {
-  .home-container {
-    min-height: 88.3vh;
-  }
-  .home-card-container {
-    min-height: 80vh;
-    min-width: 84vw;
-    border-radius: 30px;
-  }
-  .home-button-container {
-    background-color: beige;
-    min-height: 38vh;
-    min-width: 60vw;
-    border-radius: 10px;
-    margin: 14px;
-  }
-  .home-button {
-    font-size: 24px;
-  }
-  .pop-up-title {
-    font-size: 26px;
-  }
-  .pop-up-description {
-    font-size: 22px;
-  }
-
-  .pop-up-close-button {
-    margin-top: 24px;
-    margin-right: 24px;
+  .todos-heading {
     font-size: 28px;
   }
-  .pop-up-start-button {
+  .create-task-heading {
+    font-size: 24px;
+    margin-top: 0px;
+  }
+  .create-task-heading-subpart {
+    font-size: 24px;
+    margin-top: 0px;
+  }
+  .todo-items-heading {
+    font-size: 24px;
+    margin-top: 0px;
+  }
+  .todo-items-heading-subpart {
+    font-size: 24px;
+    margin-top: 0px;
+  }
+  .todo-user-input {
+    margin-bottom: 10px;
     padding: 10px;
-    border-radius: 5px;
+  }
+  .add-button {
     font-size: 18px;
-    margin-bottom: 140px;
+    margin-bottom: 10px;
+  }
+  .text-decoration-on {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  .text-decoration-off {
+    font-size: 18px;
+    margin-right: 10px;
   }
 }

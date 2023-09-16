@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: rgb(202, 227, 224);
-  padding: 9px;
+  padding: 6px;
 }
 .header-home-img {
   min-width: 25px;
@@ -18,13 +18,8 @@
 }
 .header-title {
   font-family: "Roboto";
-  font-size: 17px;
+  font-size: 16px;
   margin-right: 6px;
-}
-.header-score {
-  font-family: "Roboto";
-  font-size: 17px;
-  color: blueviolet;
 }
 .header-logout-button {
   background-color: transparent;
@@ -36,7 +31,8 @@
 }
 @media screen and (min-width: 992px) {
   .header-nav {
-    padding: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .header-home-img {
     min-width: 34px;
@@ -45,11 +41,6 @@
   .header-title {
     font-size: 22px;
     margin-right: 12px;
-  }
-  .header-score {
-    font-family: "Roboto";
-    font-size: 23px;
-    color: blueviolet;
   }
   .header-logout-img {
     max-width: 44px;

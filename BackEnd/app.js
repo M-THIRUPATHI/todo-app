@@ -2,7 +2,7 @@
 const app = express();
 const sqlite3 = require("sqlite3").verbose();
 let db = new sqlite3.Database(
-  "./userdetails.db",
+  "./userdetail.db",
   sqlite3.OPEN_READWRITE,
   (error) => {
     if (error) return console.error(error.message);
@@ -14,26 +14,24 @@ app.listen(4000, () => {
 });
 
 db.run(
-  `CREATE TABLE userdetails(id INTEGER PRIMARY KEY,username VARCHAR(200),email VARCHAR(200),password VARCHAR(200))`
-);
+  `CREATE TABLE todo(id INTEGER PRIMARY KEY,username VARCHAR(200),todo VARCHAR(200),status VARCHAR(200))`
+); 
 
-let sql = `INSERT INTO userdetails(username,email,password,score) VALUES (?,?,?,?)`;
+let sql = `INSERT INTO todo(username,todo,status) VALUES (?,?,?)`;
 
-db.run(sql, ["thiru", "thiru@gmail.com", "thiru@123", 0], (err) => {
+db.run(sql, ["thiru", "Assignment", "pending"], (err) => {
   if (err) return console.log(err.message);
 });
-
-
 
 db.run(`ALTER TABLE userdetails ADD score INTEGER`, [], (err) => {
   if (err) return console.log(err.message);
 }); 
 
-db.run(`DELETE FROM userdetails`, [], (err) => {
+db.run(`DELETE FROM userdetail`, [], (err) => {
   if (err) return console.log(err.message);
-});
+}); 
 
-table = `SELECT * FROM userdetails`;
+table = `SELECT * FROM todo`;
 db.all(table, [], (err, rows) => {
   if (err) return console.error(err.message);
   rows.forEach((row) => {
@@ -60,7 +58,7 @@ app.use(
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const dbPath = path.join(__dirname, "userdetails.db");
+const dbPath = path.join(__dirname, "userdetail.db");
 
 let db = null;
 
@@ -84,18 +82,17 @@ initializeDBAndServer();
 app.post("/register", async (request, response) => {
   const { username, email } = request.body;
   const hashedPassword = await bcrypt.hash(request.body.password, 10);
-  const selectUserQuery = `SELECT * FROM userdetails WHERE username = '${username}'`;
+  const selectUserQuery = `SELECT * FROM userdetail WHERE username = '${username}'`;
   const dbUser = await db.get(selectUserQuery);
   if (dbUser === undefined) {
     const createUserQuery = `
         INSERT INTO 
-          userdetails (username, email, password, score) 
+          userdetail (username, email, password) 
         VALUES 
           (
             '${username}', 
             '${email}',
-            '${hashedPassword}',
-            ${0}
+            '${hashedPassword}'
           )`;
     await db.run(createUserQuery);
     response.send("Register Successfully");
@@ -107,7 +104,7 @@ app.post("/register", async (request, response) => {
 
 app.post("/login", async (request, response) => {
   const { username, password } = request.body;
-  const selectUserQuery = `SELECT * FROM userdetails WHERE username = '${username}'`;
+  const selectUserQuery = `SELECT * FROM userdetail WHERE username = '${username}'`;
   const dbUser = await db.get(selectUserQuery);
   if (dbUser === undefined) {
     response.status(400);
@@ -155,14 +152,64 @@ app.get("/profile", authenticateToken, async (request, response) => {
             SELECT
               *
             FROM
-             userdetails
+             userdetail
             WHERE
              username='${username}';`;
   const userArray = await db.all(getUserQuery);
   response.send(userArray);
 });
 
-const zigzagWords_30 = [
+app.get("/", authenticateToken, async (request, response) => {
+  const username = request.username;
+  const getUserQuery = `
+            SELECT
+              *
+            FROM
+             todo
+            WHERE
+             username='${username}';`;
+  const userArray = await db.all(getUserQuery);
+  response.send(userArray);
+});
+
+app.post("/add", authenticateToken, async (request, response) => {
+  const username = request.username;
+  const { todo, status } = request.body;
+  const insertQuery = `
+  INSERT INTO 
+    todo (username, todo, status) 
+  VALUES 
+    (?, ?, ?)`;
+  await db.run(insertQuery, [username, todo, status]);
+  response.send("Add successfully");
+});
+
+app.put("/edit/:id/", authenticateToken, async (request, response) => {
+  const { id } = request.params;
+  const { status } = request.body;
+  const updateQuery = `
+    UPDATE
+      todo
+    SET
+      status='${status}'
+    WHERE
+      id = ${id};`;
+  await db.run(updateQuery);
+  response.send("Updated Successfully");
+});
+
+app.delete("/delete/:id", authenticateToken, async (request, response) => {
+  const { id } = request.params;
+  const deleteQuery = `
+    DELETE FROM
+      todo
+    WHERE
+      id = ${id};`;
+  await db.run(deleteQuery);
+  response.send("Deleted Successfully");
+});
+
+/*const zigzagWords_30 = [
   { zigzagWord: "lapep", correctWord: "apple" },
   { zigzagWord: "otmehr", correctWord: "mother" },
   { zigzagWord: "ent", correctWord: "ten" },
@@ -194,3 +241,4 @@ app.put("/game", authenticateToken, async (request, response) => {
   const random = Math.floor(Math.random() * zigzagWords_30.length);
   response.send(zigzagWords_30[random]);
 });
+ */
