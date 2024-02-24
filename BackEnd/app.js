@@ -1,43 +1,3 @@
-/*const express = require("express");
-const app = express();
-const sqlite3 = require("sqlite3").verbose();
-let db = new sqlite3.Database(
-  "./userdetail.db",
-  sqlite3.OPEN_READWRITE,
-  (error) => {
-    if (error) return console.error(error.message);
-    console.log("Connected to the database.");
-  }
-);
-app.listen(4000, () => {
-  console.log("Server Running at http://localhost:4000");
-});
-
-db.run(
-  `CREATE TABLE todo(id INTEGER PRIMARY KEY,username VARCHAR(200),todo VARCHAR(200),status VARCHAR(200))`
-); 
-
-let sql = `INSERT INTO todo(username,todo,status) VALUES (?,?,?)`;
-
-db.run(sql, ["thiru", "Assignment", "pending"], (err) => {
-  if (err) return console.log(err.message);
-});
-
-db.run(`ALTER TABLE userdetails ADD score INTEGER`, [], (err) => {
-  if (err) return console.log(err.message);
-}); 
-
-db.run(`DELETE FROM userdetail`, [], (err) => {
-  if (err) return console.log(err.message);
-}); 
-
-table = `SELECT * FROM todo`;
-db.all(table, [], (err, rows) => {
-  if (err) return console.error(err.message);
-  rows.forEach((row) => {
-    console.log(row);
-  });
-}); */
 
 const express = require("express");
 const path = require("path");
@@ -209,36 +169,4 @@ app.delete("/delete/:id", authenticateToken, async (request, response) => {
   response.send("Deleted Successfully");
 });
 
-/*const zigzagWords_30 = [
-  { zigzagWord: "lapep", correctWord: "apple" },
-  { zigzagWord: "otmehr", correctWord: "mother" },
-  { zigzagWord: "ent", correctWord: "ten" },
-  { zigzagWord: "atc", correctWord: "cat" },
-  { zigzagWord: "gdo", correctWord: "dog" },
-  { zigzagWord: "unrngni", correctWord: "running" },
-  { zigzagWord: "lncae", correctWord: "clean" },
-  { zigzagWord: "ttras", correctWord: "start" },
-  { zigzagWord: "edu", correctWord: "due" },
-  { zigzagWord: "het", correctWord: "the" },
-  { zigzagWord: "eh", correctWord: "he" },
-  { zigzagWord: "bsu", correctWord: "bus" },
-  { zigzagWord: "ixte", correctWord: "exit" },
-  { zigzagWord: "ouy", correctWord: "you" },
-  { zigzagWord: "anc", correctWord: "can" },
-  { zigzagWord: "tge", correctWord: "get" },
-  { zigzagWord: "etcrae", correctWord: "create" },
-  { zigzagWord: "ecsussc", correctWord: "success" },
-];
 
-app.put("/game", authenticateToken, async (request, response) => {
-  const { score } = request.body;
-  const username = request.username;
-  const updateBookQuery = `
-  UPDATE userdetails
-  SET score=?
-  WHERE username=?`;
-  await db.run(updateBookQuery, [score, username]);
-  const random = Math.floor(Math.random() * zigzagWords_30.length);
-  response.send(zigzagWords_30[random]);
-});
- */

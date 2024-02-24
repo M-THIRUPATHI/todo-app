@@ -9,7 +9,7 @@ import ProtectedRoute from "./ProtectedRoute";
 const App = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/register" component={Register} />
+      <Route exact path="/signup" component={Register} />
       <Route exact path="/login" component={Login} />
       <ProtectedRoute exact path="/" component={Home} />
     </Switch>

@@ -12,23 +12,24 @@ const Home = () => {
   const [todoList, setTodoList] = useState([]);
   const [userInput, setUserInput] = useState("");
 
-  useEffect(() => {
-    const getTodo = async () => {
-      const api = axios.create({
-        baseURL: "http://localhost:4000",
+  const getTodo = async () => {
+    const api = axios.create({
+      baseURL: "http://localhost:4000",
+    });
+    api.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
+    api
+      .get("/")
+      .then((response) => {
+        setTodoList(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
-      api.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
-      api
-        .get("/")
-        .then((response) => {
-          setTodoList(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
+  };
+
+  useEffect(() => {
     getTodo();
-  }, [jwtToken]);
+  });
 
   const addTodo = () => {
     const api = axios.create({
@@ -44,10 +45,10 @@ const Home = () => {
         console.error(error);
       });
     setUserInput("");
-    window.location.reload();
   };
 
   const editTodo = (value, id, status) => {
+    console.log(value,id,status)
     const currentStatus = status === "completed" ? true : false;
     let newStatus;
     if (value && !currentStatus) {
@@ -67,7 +68,6 @@ const Home = () => {
       .catch((error) => {
         console.error(error);
       });
-    window.location.reload();
   };
 
   const deleteTodo = (id) => {
@@ -83,7 +83,6 @@ const Home = () => {
       .catch((error) => {
         console.error(error);
       });
-    window.location.reload();
   };
 
   return (
@@ -156,25 +155,4 @@ const Home = () => {
 };
 export default Home;
 
-/*
-<div classNameName="home-button-container">
-            <button type="button" classNameName="home-button home-button-hover">
-              Zig Zag English Words
-            </button>
-          </div>
-          <div classNameName="home-button-container">
-            <button type="button" classNameName="home-button home-button-hover">
-              English Synonyms
-            </button>
-          </div>
-          <div classNameName="home-button-container">
-            <button type="button" classNameName="home-button home-button-hover">
-              English Antonyms
-            </button>
-          </div>
 
-          <button type="button" onClick={editTodo}>
-                      Edit
-                    </button>
-*/
-// <AiFillCloseCircle />
